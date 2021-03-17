@@ -21,7 +21,7 @@ public class ProcessController {
     ObjectMapper mapper;
 	
     @PostMapping(value="/start/{processKey}/{trigger}")
-	public ResponseEntity<String> startProcess(@PathVariable(name = "processKey") String processKey, @PathVariable(name = "trigger") String trigger, @RequestParam String triggerDefinition, @RequestBody(required=false) Map<String, Object> variables) {
+	public ResponseEntity<String> startProcess(@PathVariable(name = "processKey") String processKey, @RequestParam(required=false) String trigger, @RequestParam(required=false) String triggerDefinition, @RequestBody Map<String, Object> variables) {
 		try {
 				return new ResponseEntity<String>(processService.startProcess(processKey, variables, trigger, triggerDefinition), HttpStatus.OK);
 		}catch(Exception e){

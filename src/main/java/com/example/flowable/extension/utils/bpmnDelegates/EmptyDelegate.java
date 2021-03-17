@@ -19,7 +19,7 @@ public class EmptyDelegate implements JavaDelegate {
         LOGGER.info("\nExecution Info: "+ delegateExecution.getProcessDefinitionId()
                 +"\nExecution Class: "+ delegateExecution.getCurrentFlowElement().getClass().getCanonicalName()
                 + "\nTask: "+ delegateExecution.getCurrentFlowElement().getName()
-                +"\nEvent: "+ delegateExecution.getCurrentFlowableListener().getEvent()
+//                +"\nEvent: "+ delegateExecution.getCurrentFlowableListener().getEvent()
                 +"\nVariables: \n"+ delegateExecution.getVariables().toString()
         );
     }

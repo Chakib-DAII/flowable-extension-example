@@ -45,14 +45,14 @@ public class ProcessLifeCycleService {
 
 	public String startProcess(String processKey, Map<String, Object> variables, String trigger, String triggerDefinition) {
 		log.info("Starting process");
-		if(trigger.equals("signal")) {
+		if(trigger != null && trigger.equals(Constants.SIGNAL)) {
 			log.info("Signal: "+triggerDefinition);
 			runtimeService.signalEventReceived(triggerDefinition, variables);
 			return runtimeService.createExecutionQuery()
 					.signalEventSubscriptionName(triggerDefinition)
 					.singleResult().getProcessInstanceId();
 
-		}else if(trigger.equals("message")) {
+		}else if(trigger != null && trigger.equals(Constants.MESSAGE)) {
 			log.info("Message: "+triggerDefinition);
 			//runtimeService.startProcessInstanceByMessage(triggerDefinition,variables);
 			return runtimeService.createExecutionQuery()
@@ -207,7 +207,7 @@ public class ProcessLifeCycleService {
 					act.put(Constants.TASK_END_TIME, Activity.getEndTime());
 					act.put(Constants.TASK_ASSIGNEE, Activity.getAssignee());
 					act.put(Constants.ACTIVITY_CLASS, Activity.getClass());
-					act.put("type", Activity.getActivityType());
+					act.put(Constants.ACTIVITY_TYPE, Activity.getActivityType());
 					return act;
 				}).collect(Collectors.toList());
 	}
@@ -235,7 +235,7 @@ public class ProcessLifeCycleService {
 									callAct.put(Constants.TASK_END_TIME, callActivity.getEndTime());
 									callAct.put(Constants.TASK_ASSIGNEE, callActivity.getAssignee());
 									callAct.put(Constants.ACTIVITY_CLASS, callActivity.getClass());
-									callAct.put("type", callActivity.getActivityType());
+									callAct.put(Constants.ACTIVITY_TYPE, callActivity.getActivityType());
 									return callAct;
 								}).collect(Collectors.toList());
 					}else{
@@ -248,7 +248,7 @@ public class ProcessLifeCycleService {
 						act.put(Constants.TASK_END_TIME, Activity.getEndTime());
 						act.put(Constants.TASK_ASSIGNEE, Activity.getAssignee());
 						act.put(Constants.ACTIVITY_CLASS, Activity.getClass());
-						act.put("type", Activity.getActivityType());
+						act.put(Constants.ACTIVITY_TYPE, Activity.getActivityType());
 						actt.add(act);
 						return actt;
 					}
