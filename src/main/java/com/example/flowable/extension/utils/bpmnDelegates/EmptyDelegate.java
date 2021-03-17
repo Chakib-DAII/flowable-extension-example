@@ -17,10 +17,10 @@ public class EmptyDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) {
         LOGGER.info("\nExecution Info: "+ delegateExecution.getProcessDefinitionId()
-                +"\nExecution Class: "+ delegateExecution.getCurrentFlowElement().getClass().getCanonicalName()
-                + "\nTask: "+ delegateExecution.getCurrentFlowElement().getName()
+                        +"\nExecution Class: "+ delegateExecution.getCurrentFlowElement().getClass().getCanonicalName()
+                        + "\nTask: "+ delegateExecution.getCurrentFlowElement().getName()
 //                +"\nEvent: "+ delegateExecution.getCurrentFlowableListener().getEvent()
-                +"\nVariables: \n"+ delegateExecution.getVariables().toString()
+                        +"\nVariables: \n"+ delegateExecution.getVariables().toString()
         );
     }
 }

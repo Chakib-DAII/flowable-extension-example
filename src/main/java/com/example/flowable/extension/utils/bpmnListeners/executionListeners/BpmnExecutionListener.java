@@ -18,10 +18,10 @@ public class BpmnExecutionListener implements ExecutionListener {
     public void notify(DelegateExecution delegateExecution) {
 
         LOGGER.info("\nExecution Info: "+ delegateExecution.getProcessDefinitionId()
-                        +"\nExecution Class: "+ delegateExecution.getCurrentFlowElement().getClass().getCanonicalName()
-                        + "\nTask: "+ delegateExecution.getCurrentFlowElement().getName()
-                        +"\nEvent: "+ delegateExecution.getCurrentFlowableListener().getEvent()
-                        +"\nVariables: \n"+ delegateExecution.getVariables().toString()
+                +"\nExecution Class: "+ delegateExecution.getCurrentFlowElement().getClass().getCanonicalName()
+                + "\nTask: "+ delegateExecution.getCurrentFlowElement().getName()
+                +"\nEvent: "+ delegateExecution.getCurrentFlowableListener().getEvent()
+                +"\nVariables: \n"+ delegateExecution.getVariables().toString()
         );
 
     }

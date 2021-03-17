@@ -350,7 +350,7 @@ public class ProcessLifeCycleService {
 				.active().singleResult();
 	}
 
-	public void exportBPMNModel(String processKey){
+	public File exportBPMNModel(String processKey){
 		ProcessDefinition process = repositoryService.createProcessDefinitionQuery().processDefinitionKey(processKey).latestVersion().singleResult();
 		InputStream stream = repositoryService.getResourceAsStream(process.getDeploymentId(), process.getDiagramResourceName());
 
@@ -364,5 +364,6 @@ public class ProcessLifeCycleService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return targetFile;
 	}
 }

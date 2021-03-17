@@ -18,11 +18,11 @@ public class BpmnTaskListener implements TaskListener {
     public void notify(DelegateTask delegateTask) {
 
         LOGGER.info("\nTask Info: "+ delegateTask.getEventName()
-                        + "\nTask Name: "+ delegateTask.getName()
-                        + "\nTask Key: "+ delegateTask.getTaskDefinitionKey()
-                        + "\nTask Id: "+ delegateTask.getId()
-                        + "\nForm Key: "+ delegateTask.getFormKey()
-                        +"\nVariables: \n"+ delegateTask.getVariables().toString()
+                + "\nTask Name: "+ delegateTask.getName()
+                + "\nTask Key: "+ delegateTask.getTaskDefinitionKey()
+                + "\nTask Id: "+ delegateTask.getId()
+                + "\nForm Key: "+ delegateTask.getFormKey()
+                +"\nVariables: \n"+ delegateTask.getVariables().toString()
         );
     }
 }
