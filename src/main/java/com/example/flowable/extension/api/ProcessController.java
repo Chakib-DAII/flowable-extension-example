@@ -154,7 +154,7 @@ public class ProcessController {
 		}
 	}
 
-	@PostMapping(value="/trigger/{processId}/{trigger}")
+	@PostMapping(value="/trigger/{processId}")
 	public ResponseEntity<String> triggerProcess(@PathVariable(name = "processId") String processId, @PathVariable(name = "trigger") String trigger, @RequestParam String triggerDefinition) {
 		try {
 			processService.triggerProcess(processId, trigger, triggerDefinition);
