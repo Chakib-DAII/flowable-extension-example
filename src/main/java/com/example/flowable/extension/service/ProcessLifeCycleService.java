@@ -77,46 +77,46 @@ public class ProcessLifeCycleService {
 	}
 
 
-	public void regressProcessByTaskId(String currentTaskId ) {
-		log.info("Regress process");
-		Task currentTask = taskService.createTaskQuery()
-				.taskId(currentTaskId)
-				.singleResult();
-
-		HistoricTaskInstance historicTaskInstance = historyService.createHistoricTaskInstanceQuery()
-				.processInstanceId(currentTask.getProcessInstanceId())
-				.orderByHistoricTaskInstanceEndTime()
-				.desc().list().get(0);
-		log.info(currentTask.getTaskDefinitionKey() +" to "+ historicTaskInstance.getTaskDefinitionKey());
-
-		runtimeService.createChangeActivityStateBuilder()
-				.processInstanceId(currentTask.getProcessInstanceId())
-				.moveActivityIdTo(currentTask.getTaskDefinitionKey(), historicTaskInstance.getTaskDefinitionKey());
-	}
-
-
-	public void regressProcessByProcessId(String processInstanceId) {
-		log.info("Regress process");
-		String currentTaskId = taskService.createTaskQuery().processDefinitionKey(processInstanceId).singleResult().getId();
-
-		HistoricTaskInstance historicTaskInstance = historyService.createHistoricTaskInstanceQuery()
-				.processInstanceId(processInstanceId)
-				.orderByHistoricTaskInstanceEndTime()
-				.desc().list().get(0);
-
-		Task currentTask = taskService.createTaskQuery()
-				.taskId(currentTaskId)
-				.singleResult();
-
-		log.info(currentTask.getTaskDefinitionKey() +" to "+ historicTaskInstance.getTaskDefinitionKey());
-
-		runtimeService.createChangeActivityStateBuilder()
-				.processInstanceId(processInstanceId)
-				.moveActivityIdTo(currentTask.getTaskDefinitionKey(), historicTaskInstance.getTaskDefinitionKey())
-				.changeState();
-
-
-	}
+//	public void regressProcessByTaskId(String currentTaskId ) {
+//		log.info("Regress process");
+//		Task currentTask = taskService.createTaskQuery()
+//				.taskId(currentTaskId)
+//				.singleResult();
+//
+//		HistoricTaskInstance historicTaskInstance = historyService.createHistoricTaskInstanceQuery()
+//				.processInstanceId(currentTask.getProcessInstanceId())
+//				.orderByHistoricTaskInstanceEndTime()
+//				.desc().list().get(0);
+//		log.info(currentTask.getTaskDefinitionKey() +" to "+ historicTaskInstance.getTaskDefinitionKey());
+//
+//		runtimeService.createChangeActivityStateBuilder()
+//				.processInstanceId(currentTask.getProcessInstanceId())
+//				.moveActivityIdTo(currentTask.getTaskDefinitionKey(), historicTaskInstance.getTaskDefinitionKey());
+//	}
+//
+//
+//	public void regressProcessByProcessId(String processInstanceId) {
+//		log.info("Regress process");
+//		String currentTaskId = taskService.createTaskQuery().processDefinitionKey(processInstanceId).singleResult().getId();
+//
+//		HistoricTaskInstance historicTaskInstance = historyService.createHistoricTaskInstanceQuery()
+//				.processInstanceId(processInstanceId)
+//				.orderByHistoricTaskInstanceEndTime()
+//				.desc().list().get(0);
+//
+//		Task currentTask = taskService.createTaskQuery()
+//				.taskId(currentTaskId)
+//				.singleResult();
+//
+//		log.info(currentTask.getTaskDefinitionKey() +" to "+ historicTaskInstance.getTaskDefinitionKey());
+//
+//		runtimeService.createChangeActivityStateBuilder()
+//				.processInstanceId(processInstanceId)
+//				.moveActivityIdTo(currentTask.getTaskDefinitionKey(), historicTaskInstance.getTaskDefinitionKey())
+//				.changeState();
+//
+//
+//	}
 
 
 	public void finishProcess(String processId, String deleteReason) {

@@ -21,7 +21,7 @@ public class ProcessController {
 	@Autowired
 	ObjectMapper mapper;
 
-	@PostMapping(value="/start/{processKey}/{trigger}")
+	@PostMapping(value="/start/{processKey}")
 	public ResponseEntity<String> startProcess(@PathVariable(name = "processKey") String processKey, @RequestParam(required=false) String trigger, @RequestParam(required=false) String triggerDefinition, @RequestBody Map<String, Object> variables) {
 		try {
 			return new ResponseEntity<String>(processService.startProcess(processKey, variables, trigger, triggerDefinition), HttpStatus.OK);
@@ -70,25 +70,25 @@ public class ProcessController {
 		}
 	}
 
-	@PostMapping(value="/regress-pid/{processId}")
-	public ResponseEntity<String> regressProcessByProcessId(@PathVariable(name="processId") String processId) {
-		try {
-			processService.regressProcessByProcessId(processId);
-			return new ResponseEntity<String>(processId, HttpStatus.OK);
-		}catch(Exception e){
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-	}
-
-	@PostMapping(value="/regress-tid/{taskId}")
-	public ResponseEntity<String> regressProcessByTaskId(@PathVariable(name="taskId") String taskId) {
-		try {
-			processService.regressProcessByTaskId(taskId);
-			return new ResponseEntity<String>(taskId, HttpStatus.OK);
-		}catch(Exception e){
-			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-		}
-	}
+//	@PostMapping(value="/regress-pid/{processId}")
+//	public ResponseEntity<String> regressProcessByProcessId(@PathVariable(name="processId") String processId) {
+//		try {
+//			processService.regressProcessByProcessId(processId);
+//			return new ResponseEntity<String>(processId, HttpStatus.OK);
+//		}catch(Exception e){
+//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//		}
+//	}
+//
+//	@PostMapping(value="/regress-tid/{taskId}")
+//	public ResponseEntity<String> regressProcessByTaskId(@PathVariable(name="taskId") String taskId) {
+//		try {
+//			processService.regressProcessByTaskId(taskId);
+//			return new ResponseEntity<String>(taskId, HttpStatus.OK);
+//		}catch(Exception e){
+//			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//		}
+//	}
 
 	@PostMapping(value="/finish/{processId}")
 	public ResponseEntity<String> finishProcess(@PathVariable(name="processId") String processId, @RequestParam String deleteReason) {
